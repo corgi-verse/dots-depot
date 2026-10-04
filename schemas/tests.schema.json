@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "package",
+    "version",
+    "source",
+    "tree_sha256",
+    "tests_passed",
+    "tests_failed",
+    "runner",
+    "completed_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dots-depot-tests/1"
+    },
+    "package": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 48,
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "commit",
+        "path",
+        "subtree"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "commit": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)*$"
+        },
+        "subtree": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+        }
+      }
+    },
+    "tree_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tests_passed": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "tests_failed": {
+      "const": 0
+    },
+    "runner": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "completed_at": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 20,
+      "format": "date-time"
+    }
+  }
+}

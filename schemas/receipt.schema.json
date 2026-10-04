@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dots-depot.invalid/schemas/receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "package",
+    "version",
+    "catalog_sha256",
+    "manifest_sha256",
+    "audit_sha256",
+    "tree_sha256",
+    "commit",
+    "subtree",
+    "executed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dots-depot-stage/1"
+    },
+    "package": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 48,
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "catalog_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "audit_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tree_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 64,
+      "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "subtree": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 64,
+      "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "executed": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,39 @@
+name: Depot offline contracts
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  depot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Depot security and CLI tests — never submission code
+        run: python -m unittest discover -s tests -v
+      - name: Web data boundaries
+        run: node --test tests/web.test.cjs
+      - name: JavaScript syntax
+        run: node --check apps/web/depot.js
+      - name: Clean static build
+        run: |
+          python scripts/make_demo.py build/demo
+          python scripts/build_site.py site-ci
+          python -m depot --root site-ci search
+          python -m depot --root site-ci/demo --demo search
+# This tests only original Depot code and original synthetic data. Never add
+# submitted package execution here. Isolated submission CI needs a separately
+# reviewed no-secrets job. This workflow performs no deployment or publication.

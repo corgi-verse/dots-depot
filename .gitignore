@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.depot/
+site-demo/
+site-approved/
+site-ci/
+.review/
+review/
+.approvals/
+build/

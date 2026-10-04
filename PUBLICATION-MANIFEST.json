@@ -1,0 +1,226 @@
+{
+  "excluded": [
+    "Private project queue and handoffs",
+    "Restricted Paste Inbox/Dotsys source and review bundles",
+    "Runtime/source build/downloads",
+    "Credentials and private captures",
+    "Approval stores and staging receipts",
+    "Other projects",
+    "Generated synthetic release outputs"
+  ],
+  "file_count_excluding_manifest": 51,
+  "files": {
+    ".github/CODEOWNERS": {
+      "bytes": 235,
+      "sha256": "27df0701e84ba634e7dd6d0962670d2e4d5c29e12b4df49a263edc74c0549d90"
+    },
+    ".github/workflows/ci.yml": {
+      "bytes": 1420,
+      "sha256": "6cbae3ca0236fd2dc6f018f1b57fabf373ff94ee4460ae2a8c1da5d7a3eb5e1b"
+    },
+    ".gitignore": {
+      "bytes": 98,
+      "sha256": "8923b5b328338bf91d62fe57c183bba0fd6ab4157beeae1b089d987688694257"
+    },
+    "BLUEPRINT.md": {
+      "bytes": 1687,
+      "sha256": "375913eea1baa2cfa4dcd2e15221260bea454270ecc1ed066e6814019936b933"
+    },
+    "EVIDENCE.md": {
+      "bytes": 3407,
+      "sha256": "bfec664f466431527b1a951aa08539d205c39f372aae5d308df6ab68f729b7d6"
+    },
+    "LICENSE": {
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    "LICENSE-REVIEW.md": {
+      "bytes": 935,
+      "sha256": "53b1fd2a185244b40640a22432f0f487b6c7ceaeec058d0c0e9b45dc0d0628e6"
+    },
+    "NOTICE": {
+      "bytes": 455,
+      "sha256": "8dfe49d83039c4d41eec1390c186e55537e92a2ecc437d07f689159c64a873ff"
+    },
+    "README.md": {
+      "bytes": 7902,
+      "sha256": "a48bccc61c7bc5ae6573d608eae5f02f87e6f1f0290b69c3577935535479a923"
+    },
+    "SECURITY.md": {
+      "bytes": 1340,
+      "sha256": "a99d7f29b432b6432a80ed01829436ec8da373959368d9613ea69dc3e0b27a12"
+    },
+    "apps/web/assets/depot.css": {
+      "bytes": 10013,
+      "sha256": "85c96a227a75f3351a8f624e098f6ac528b14429c2415e707887cf8f07389f0c"
+    },
+    "apps/web/audit.html": {
+      "bytes": 2028,
+      "sha256": "500413307018ef18bb708409f69dad90301016bdbb895ba253ce7db21bdcf99d"
+    },
+    "apps/web/depot.js": {
+      "bytes": 15610,
+      "sha256": "4cddb37d05f996c19867e584d294259c343944b207dc43454149285ba8acb507"
+    },
+    "apps/web/index.html": {
+      "bytes": 4447,
+      "sha256": "5ea509c55fe365d7df96f4ff89334be0348d371350409e36c8b67aa04a77f9b2"
+    },
+    "apps/web/package.html": {
+      "bytes": 2981,
+      "sha256": "966faadf14ba3419588f0b9940a3258872364f29cc3958cbc98ffb6856d9d8da"
+    },
+    "apps/web/policy.html": {
+      "bytes": 2529,
+      "sha256": "10f2e744c4e3065a64a0113ed323bc4513d9e959fc5b35ae9b21eccfeea25e8e"
+    },
+    "depot/__init__.py": {
+      "bytes": 52,
+      "sha256": "1e9eb1dc46f3204dde6162f49328fbfde15cf9a7df584295e0fe0bceb6d91a52"
+    },
+    "depot/__main__.py": {
+      "bytes": 50,
+      "sha256": "3be45d1692bbafee23c272de44ab78c309854715d162f845d0574a963656e319"
+    },
+    "depot/catalog.py": {
+      "bytes": 7494,
+      "sha256": "b6997ccf579024b957fb81956b1f8e53594330d7ad6d89643d0da291c637a1f4"
+    },
+    "depot/client.py": {
+      "bytes": 5930,
+      "sha256": "d1766a53a81408abab5d71fe3dc03bed5169b4ed9307ea7fa60ef8036fb1fb95"
+    },
+    "depot/core.py": {
+      "bytes": 15287,
+      "sha256": "805ac834ed56803f0bb8b5339c6d23a714c9b82ae90f57445ca07652f13c068c"
+    },
+    "fixtures/README.md": {
+      "bytes": 410,
+      "sha256": "20debeb256f1ca0e9c580f52ed655614113101405ba695fdf2b5a34c1cf52639"
+    },
+    "pyproject.toml": {
+      "bytes": 244,
+      "sha256": "d75ba4c9292469a1b73b696ff274da6cf8f07a16d0ceb5e7c5c25143c45afa6e"
+    },
+    "schemas/approval.schema.json": {
+      "bytes": 1505,
+      "sha256": "0581f94b2bc87b61ccccf1e1b56496dec7a858f59049015d00a3a1da70fd8bd6"
+    },
+    "schemas/audit.schema.json": {
+      "bytes": 5020,
+      "sha256": "995b2d5ba9a9f441d261a9be3633fda2560477891899840a55b0f43c3e009fcd"
+    },
+    "schemas/catalog.schema.json": {
+      "bytes": 2365,
+      "sha256": "d4e63a849992f48fc5391ab3e56bd4397658f492ad42f7f28f4ce77317f9117b"
+    },
+    "schemas/package.schema.json": {
+      "bytes": 5163,
+      "sha256": "f5b6630ad9ecb8607b2d96716f086845f7db04f9d94fe6ea59d7d6e800152d07"
+    },
+    "schemas/receipt.schema.json": {
+      "bytes": 1626,
+      "sha256": "fac6d87cd3e91ba5882f97c6d617ad7b3c3e9b89315b41fcac8de9b492df431a"
+    },
+    "schemas/tests.schema.json": {
+      "bytes": 2080,
+      "sha256": "4232c9192098b9dbd410338c6e45eca07fee75620ae9bfbd4621079976832acb"
+    },
+    "scripts/build_catalog.py": {
+      "bytes": 800,
+      "sha256": "95e8bbc93aeaca017389bf3f674d54d9f96a553c98a024fa73de5fa3e4e8ee5e"
+    },
+    "scripts/build_site.py": {
+      "bytes": 1767,
+      "sha256": "a5da7c7f34d7b3a68012c89822b8185843a1e2d2e8e5f5b97a05f9ca6b7df0bc"
+    },
+    "scripts/check_schemas.py": {
+      "bytes": 1403,
+      "sha256": "8d8b6af8fa79822c23ee160afa42a4ff435f8486afa180332776769cf9fc029c"
+    },
+    "scripts/inspect_submission.py": {
+      "bytes": 3231,
+      "sha256": "303a725d0bed5086ec5e2da617a55ebc754287f520edb9572b223086228b871b"
+    },
+    "scripts/make_demo.py": {
+      "bytes": 3778,
+      "sha256": "d38fd4a49c758691a5922abdd83f99396794317ae47b822c4b264a932d41c05c"
+    },
+    "scripts/publish_package.py": {
+      "bytes": 5825,
+      "sha256": "80f0e7ed5f48b072d4df9f5107240d42be29557b838ebf1cbbce3c277799bfde"
+    },
+    "scripts/tree_digest.py": {
+      "bytes": 510,
+      "sha256": "32586f4e0606cd0b82e5c0a327c1eea9cc473cec6bd99695d4e57a0799033529"
+    },
+    "site/assets/depot.css": {
+      "bytes": 10013,
+      "sha256": "85c96a227a75f3351a8f624e098f6ac528b14429c2415e707887cf8f07389f0c"
+    },
+    "site/audit.html": {
+      "bytes": 2028,
+      "sha256": "500413307018ef18bb708409f69dad90301016bdbb895ba253ce7db21bdcf99d"
+    },
+    "site/catalog/index.json": {
+      "bytes": 65,
+      "sha256": "909f1dc4418fcb54604f8f0f80c5563e96032445446c7359feb6eb19b904b88f"
+    },
+    "site/depot.js": {
+      "bytes": 15610,
+      "sha256": "4cddb37d05f996c19867e584d294259c343944b207dc43454149285ba8acb507"
+    },
+    "site/index.html": {
+      "bytes": 4447,
+      "sha256": "5ea509c55fe365d7df96f4ff89334be0348d371350409e36c8b67aa04a77f9b2"
+    },
+    "site/package.html": {
+      "bytes": 2981,
+      "sha256": "966faadf14ba3419588f0b9940a3258872364f29cc3958cbc98ffb6856d9d8da"
+    },
+    "site/policy.html": {
+      "bytes": 2529,
+      "sha256": "10f2e744c4e3065a64a0113ed323bc4513d9e959fc5b35ae9b21eccfeea25e8e"
+    },
+    "site/schemas/approval.schema.json": {
+      "bytes": 1505,
+      "sha256": "0581f94b2bc87b61ccccf1e1b56496dec7a858f59049015d00a3a1da70fd8bd6"
+    },
+    "site/schemas/audit.schema.json": {
+      "bytes": 5020,
+      "sha256": "995b2d5ba9a9f441d261a9be3633fda2560477891899840a55b0f43c3e009fcd"
+    },
+    "site/schemas/catalog.schema.json": {
+      "bytes": 2365,
+      "sha256": "d4e63a849992f48fc5391ab3e56bd4397658f492ad42f7f28f4ce77317f9117b"
+    },
+    "site/schemas/package.schema.json": {
+      "bytes": 5163,
+      "sha256": "f5b6630ad9ecb8607b2d96716f086845f7db04f9d94fe6ea59d7d6e800152d07"
+    },
+    "site/schemas/receipt.schema.json": {
+      "bytes": 1626,
+      "sha256": "fac6d87cd3e91ba5882f97c6d617ad7b3c3e9b89315b41fcac8de9b492df431a"
+    },
+    "site/schemas/tests.schema.json": {
+      "bytes": 2080,
+      "sha256": "4232c9192098b9dbd410338c6e45eca07fee75620ae9bfbd4621079976832acb"
+    },
+    "tests/test_depot.py": {
+      "bytes": 22099,
+      "sha256": "fe46f0211510fbad3a900b25176dbb3d0bae89b3b59921d09b3e2c7a38abd9ec"
+    },
+    "tests/web.test.cjs": {
+      "bytes": 4558,
+      "sha256": "b4596e330105834d040f98af8f1ad39f7dd67aa219b5db959ad510a39637dee5"
+    }
+  },
+  "license": "Apache-2.0",
+  "manifest_self_excluded_from_hashes": true,
+  "real_package_approval": false,
+  "repository": "https://github.com/corgi-verse/dots-depot",
+  "schema": "dots-depot-publication-scope/1",
+  "scope": "Original Depot implementation, schemas, tests, scripts, original static site, docs/license and read-only CI workflow only.",
+  "site_deployed": false,
+  "trusted_catalog_packages": 0
+}

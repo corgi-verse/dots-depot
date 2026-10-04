@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dots-depot.invalid/schemas/audit.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "package",
+    "version",
+    "source",
+    "tree_sha256",
+    "manifest_sha256",
+    "permissions",
+    "audit",
+    "verification"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dots-depot-audit/1"
+    },
+    "package": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 48,
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "commit",
+        "path",
+        "subtree"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "commit": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)*$"
+        },
+        "subtree": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 64,
+          "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+        }
+      }
+    },
+    "tree_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workspace_read",
+        "workspace_write",
+        "network",
+        "credentials",
+        "public_publish",
+        "account_changes",
+        "paid_services"
+      ],
+      "properties": {
+        "workspace_read": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "workspace_write": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "network": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240,
+            "pattern": "^https://[A-Za-z0-9.-]+$"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "credentials": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "public_publish": {
+          "type": "boolean"
+        },
+        "account_changes": {
+          "type": "boolean"
+        },
+        "paid_services": {
+          "type": "boolean"
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "auditor",
+        "reviewed_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "approved",
+            "synthetic"
+          ]
+        },
+        "auditor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "reviewed_at": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 20,
+          "format": "date-time"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tests_passed",
+        "static_scan",
+        "report_sha256",
+        "tests_status",
+        "tests_sha256"
+      ],
+      "properties": {
+        "tests_passed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "static_scan": {
+          "enum": [
+            "pass",
+            "review-required"
+          ]
+        },
+        "report_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "tests_status": {
+          "enum": [
+            "not-run",
+            "human-reviewed-ci"
+          ]
+        },
+        "tests_sha256": {
+          "type": "string",
+          "minLength": 7,
+          "maxLength": 64,
+          "pattern": "^(not-run|[0-9a-f]{64})$"
+        }
+      }
+    }
+  }
+}
