@@ -24,7 +24,7 @@ python3 scripts/build_site.py site-demo
 python3 -m http.server 8765 --bind 127.0.0.1 --directory site-demo
 ```
 
-Without `build/demo`, `build_site.py` emits only an empty trusted catalog. Outputs cannot already exist. Synthetic records are separate and can never enter the trusted catalog.
+Without `build/demo`, `build_site.py` emits only an empty trusted catalog. Outputs cannot already exist. Demo navigation is hidden in the trusted-only site and enabled only in outputs containing validated local fixtures. A demo URL on the trusted-only site returns to its trusted catalog. Synthetic records are separate and can never enter the trusted catalog.
 
 ## Search, inspect, stage and verify
 
