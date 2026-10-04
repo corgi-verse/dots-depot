@@ -43,8 +43,8 @@
       "sha256": "8dfe49d83039c4d41eec1390c186e55537e92a2ecc437d07f689159c64a873ff"
     },
     "README.md": {
-      "bytes": 7902,
-      "sha256": "a48bccc61c7bc5ae6573d608eae5f02f87e6f1f0290b69c3577935535479a923"
+      "bytes": 8086,
+      "sha256": "56fc61609db3fc3b4b053987a86a570ad314bc19249c5a91234e01eff1d06550"
     },
     "SECURITY.md": {
       "bytes": 1340,
@@ -59,12 +59,12 @@
       "sha256": "500413307018ef18bb708409f69dad90301016bdbb895ba253ce7db21bdcf99d"
     },
     "apps/web/depot.js": {
-      "bytes": 15610,
-      "sha256": "4cddb37d05f996c19867e584d294259c343944b207dc43454149285ba8acb507"
+      "bytes": 15797,
+      "sha256": "e6a238bd27613fbde3aac4bbe4068f203f01f2d402d039b68864591dc7955153"
     },
     "apps/web/index.html": {
-      "bytes": 4447,
-      "sha256": "5ea509c55fe365d7df96f4ff89334be0348d371350409e36c8b67aa04a77f9b2"
+      "bytes": 4455,
+      "sha256": "37843c1cab1be99645f258d8cd99b82aa935c4486e97223aabe50c18fbb374e3"
     },
     "apps/web/package.html": {
       "bytes": 2981,
@@ -131,8 +131,8 @@
       "sha256": "95e8bbc93aeaca017389bf3f674d54d9f96a553c98a024fa73de5fa3e4e8ee5e"
     },
     "scripts/build_site.py": {
-      "bytes": 1767,
-      "sha256": "a5da7c7f34d7b3a68012c89822b8185843a1e2d2e8e5f5b97a05f9ca6b7df0bc"
+      "bytes": 2068,
+      "sha256": "83b4c9b7e01454e46789b02a2f61c481292592e93b6d06d574e6872dd092d173"
     },
     "scripts/check_schemas.py": {
       "bytes": 1403,
@@ -167,12 +167,12 @@
       "sha256": "909f1dc4418fcb54604f8f0f80c5563e96032445446c7359feb6eb19b904b88f"
     },
     "site/depot.js": {
-      "bytes": 15610,
-      "sha256": "4cddb37d05f996c19867e584d294259c343944b207dc43454149285ba8acb507"
+      "bytes": 15797,
+      "sha256": "e6a238bd27613fbde3aac4bbe4068f203f01f2d402d039b68864591dc7955153"
     },
     "site/index.html": {
-      "bytes": 4447,
-      "sha256": "5ea509c55fe365d7df96f4ff89334be0348d371350409e36c8b67aa04a77f9b2"
+      "bytes": 4455,
+      "sha256": "37843c1cab1be99645f258d8cd99b82aa935c4486e97223aabe50c18fbb374e3"
     },
     "site/package.html": {
       "bytes": 2981,
@@ -207,12 +207,12 @@
       "sha256": "4232c9192098b9dbd410338c6e45eca07fee75620ae9bfbd4621079976832acb"
     },
     "tests/test_depot.py": {
-      "bytes": 22099,
-      "sha256": "fe46f0211510fbad3a900b25176dbb3d0bae89b3b59921d09b3e2c7a38abd9ec"
+      "bytes": 23964,
+      "sha256": "0fb20ee934812d8981bddb137f6faab69e6c6e2179d041d5c6b6d419eb7ad66c"
     },
     "tests/web.test.cjs": {
-      "bytes": 4558,
-      "sha256": "b4596e330105834d040f98af8f1ad39f7dd67aa219b5db959ad510a39637dee5"
+      "bytes": 8195,
+      "sha256": "ec64c842c9b65193e879c554bd8f00a243fa7e807e99893d84b5bcafadbbaf6f"
     }
   },
   "license": "Apache-2.0",

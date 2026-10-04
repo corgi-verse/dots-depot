@@ -6,9 +6,9 @@ const fs=require('node:fs');
 const {webcrypto}=require('node:crypto');
 const {TextDecoder}=require('node:util');
 const source=fs.readFileSync('apps/web/depot.js','utf8');
-function context(fetch) {
-  const ctx=vm.createContext({document:{body:{dataset:{page:''}}},location:{search:''},URLSearchParams,TextDecoder,crypto:webcrypto,fetch});
-  vm.runInContext(source+';globalThis.api={parseStrict,validateDocument,read,catalog};',ctx);
+function context(fetch, options={}) {
+  const ctx=vm.createContext({document:options.document||{body:{dataset:{page:''}}},location:options.location||{search:''},history:options.history,URL,URLSearchParams,TextDecoder,crypto:webcrypto,fetch});
+  vm.runInContext(source+';globalThis.api={parseStrict,validateDocument,read,catalog,loadMode,filterCards};',ctx);
   return ctx.api;
 }
 const schema=kind=>JSON.parse(fs.readFileSync('schemas/'+kind+'.schema.json','utf8'));
@@ -55,4 +55,61 @@ test('catalog validates trust mode as well as schema',async()=>{
     }}};
   };
   await assert.rejects(context(fetch).catalog());
+});
+
+function catalogView(demoAvailable=false, fixtures=[]) {
+  const nodes=new Map();
+  const element=()=>({hidden:false,value:'',textContent:'',children:[],attributes:{},
+    replaceChildren(...items){this.children=items;},append(...items){this.children.push(...items);},
+    setAttribute(key,value){this.attributes[key]=value;}});
+  const node=id=>{if(!nodes.has(id))nodes.set(id,element());return nodes.get(id);};
+  node('type').value='all';
+  const requests=[];const navigations=[];
+  const document={body:{dataset:{page:'',demoAvailable:String(demoAvailable)}},getElementById:node,createElement:element};
+  const fetch=async path=>{
+    requests.push(path);
+    const value=path.startsWith('schemas/')?schema('catalog'):
+      {schema:'dots-depot-catalog/1',mode:path.startsWith('demo/')?'synthetic':'trusted',packages:path.startsWith('demo/')?fixtures:[]};
+    const bytes=new TextEncoder().encode(JSON.stringify(value));
+    return {ok:true,headers:{get:()=>null},body:{getReader:()=>{let sent=false;return{
+      read:async()=>sent?{done:true}:(sent=true,{done:false,value:bytes}),releaseLock:()=>{}};}}};
+  };
+  const api=context(fetch,{document,location:{search:'?mode=demo',href:'http://localhost:8765/?mode=demo'},
+    history:{replaceState:(_state,_title,url)=>navigations.push(String(url))}});
+  return {api,node,requests,navigations};
+}
+test('trusted-only view hides unavailable demo routes and makes no demo request',async()=>{
+  const view=catalogView();await view.api.loadMode(true);
+  assert.equal(view.node('catalog-mode').hidden,true);
+  assert.equal(view.node('empty-action').hidden,true);
+  assert.equal(view.node('count').textContent,'0 approved releases');
+  assert.equal(view.node('empty').hidden,false);
+  assert.equal(view.node('error').hidden,true);
+  assert.equal(view.node('catalog').children.length,0);
+  assert.equal(view.requests.some(path=>path.startsWith('demo/')),false);
+  assert.equal(new URL(view.navigations.at(-1)).search,'');
+  assert.doesNotMatch(view.node('empty-message').textContent,/Paste Inbox|0001/);
+  const html=fs.readFileSync('apps/web/index.html','utf8');
+  assert.match(html,/<div id="catalog-mode"[^>]* hidden/);
+  assert.match(html,/<button id="empty-action"[^>]* hidden/);
+  assert.doesNotMatch(html,/Paste Inbox|0001/);
+});
+test('built local demo keeps navigation, filtering and return to empty trusted catalog',async()=>{
+  const entry={id:'fixture.example',version:'0.1.0',name:'Inert fixture',summary:'Synthetic data only',type:'tool',
+    tree_sha256:'0'.repeat(64),manifest_sha256:'0'.repeat(64),audit_sha256:'0'.repeat(64),archive_sha256:'0'.repeat(64),synthetic:true};
+  const view=catalogView(true,[entry]);await view.api.loadMode(true);
+  assert.equal(view.node('catalog-mode').hidden,false);
+  assert.equal(view.node('count').textContent,'1 synthetic fixtures');
+  assert.equal(view.node('catalog').children.length,1);
+  assert.equal(view.node('empty').hidden,true);
+  view.node('search').value='no match';view.api.filterCards();
+  assert.equal(view.node('empty').hidden,false);
+  assert.equal(view.node('empty-action').hidden,false);
+  view.node('empty-action').onclick();
+  assert.equal(view.node('search').value,'');assert.equal(view.node('catalog').children.length,1);
+  await view.api.loadMode(false);
+  assert.equal(view.node('count').textContent,'0 approved releases');
+  assert.equal(view.node('empty-action').hidden,false);
+  assert.equal(view.node('empty-action').textContent,'Explore synthetic fixtures →');
+  assert.equal(view.node('error').hidden,true);
 });

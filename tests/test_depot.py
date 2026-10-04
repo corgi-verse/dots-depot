@@ -10,6 +10,7 @@ import sys
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 from depot.core import (DepotError, MAX_ARCHIVE, MAX_FILE, archive_bytes, bind, canonical,
                         document, entries_checked, load_json, path_label, regular_bytes,
                         tree_digest, unpack, inspect_git, git)
@@ -295,5 +296,36 @@ class DepotTests(unittest.TestCase):
     def test_site_build_requires_paired_maintainer_inputs(self):
         with self.assertRaises(DepotError):build_site(self.root/'public',self.base/'mirror')
         self.assertFalse((self.root/'public').exists())
+
+
+    def test_trusted_only_site_hides_demo_and_preserves_exact_public_paths(self):
+        original=build_site.__globals__['ROOT']
+        source=self.root/'site-source';source.mkdir()
+        for name in ['apps/web','schemas']:
+            shutil.copytree(original/name,source/name)
+        with patch.dict(build_site.__globals__,{'ROOT':source}):
+            output=build_site(self.root/'trusted-site')
+        expected={p[5:] for p in json.loads((original/'PUBLICATION-MANIFEST.json').read_text())['files'] if p.startswith('site/')}
+        actual={p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()}
+        self.assertEqual(actual,expected);self.assertEqual(len(actual),13)
+        self.assertEqual(load_catalog(output)[0]['packages'],[])
+        html=(output/'index.html').read_text()
+        self.assertNotIn('data-demo-available="true"',html)
+        self.assertNotIn('Paste Inbox',html);self.assertNotIn('0001',html)
+        self.assertIn('id="catalog-mode" class="mode-control" hidden',html)
+        self.assertFalse((output/'demo').exists())
+
+    def test_optional_built_demo_is_available_on_catalog_and_detail_pages(self):
+        original=build_site.__globals__['ROOT']
+        source=self.root/'demo-site-source';source.mkdir()
+        for name in ['apps/web','schemas']:
+            shutil.copytree(original/name,source/name)
+        create_demo(source/'build/demo')
+        with patch.dict(build_site.__globals__,{'ROOT':source}):
+            output=build_site(self.root/'demo-site')
+        self.assertEqual(load_catalog(output)[0]['packages'],[])
+        self.assertEqual(len(load_catalog(output/'demo',allow_synthetic=True)[0]['packages']),2)
+        for name in ['index.html','package.html','audit.html']:
+            self.assertIn('data-demo-available="true"',(output/name).read_text())
 
 if __name__=='__main__':unittest.main()

@@ -29,6 +29,11 @@ def build_site(output,mirror=None,approvals=None):
     demo=ROOT/'build/demo/catalog'
     if demo.exists():
         load_catalog(demo,allow_synthetic=True);shutil.copytree(demo,output/'demo')
+        # Navigation is offered only in outputs containing validated fixtures.
+        for page in output.glob('*.html'):
+            html=page.read_text(encoding='utf-8')
+            html=html.replace('<body', '<body data-demo-available="true"', 1)
+            page.write_text(html,encoding='utf-8')
     return output
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path)

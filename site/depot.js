@@ -2,7 +2,8 @@
 const $ = id => document.getElementById(id);
 const page = document.body.dataset.page;
 const params = new URLSearchParams(location.search);
-let demo = params.get('mode') === 'demo';
+const demoAvailable = document.body.dataset.demoAvailable === 'true';
+let demo = demoAvailable && params.get('mode') === 'demo';
 let index;
 let fingerprint;
 let generation = 0;
@@ -140,14 +141,16 @@ function filterCards() {
   if (!entries.length) {
     const noMatches=index.packages.length>0;
     $('empty-title').textContent=noMatches?'No parts match this search.':'The warehouse is waiting for its first approved release.';
-    $('empty-message').textContent=noMatches?'Try another name or choose all package types.':'Real Paste Inbox is reserved for package #0001. Its exact source and release still need human approval.';
+    $('empty-message').textContent=noMatches?'Try another name or choose all package types.':'Approved releases appear here only after exact-source review and human approval.';
+    $('empty-action').hidden=!noMatches&&(!demoAvailable||demo);
     $('empty-action').textContent=noMatches?'Clear search & filters':'Explore synthetic fixtures →';
     $('empty-action').onclick=()=>{ if(noMatches){$('search').value='';$('type').value='all';filterCards();}else loadMode(true); };
   }
 }
 async function loadMode(useDemo) {
   const token=++generation;
-  demo=useDemo;index=undefined;
+  demo=useDemo&&demoAvailable;index=undefined;
+  $('catalog-mode').hidden=!demoAvailable;
   $('catalog').replaceChildren();$('empty').hidden=true;$('error').hidden=true;$('catalog').setAttribute('aria-busy','true');
   $('count').textContent='Loading catalog…';
   $('trusted-mode').setAttribute('aria-pressed',String(!demo));$('demo-mode').setAttribute('aria-pressed',String(demo));
