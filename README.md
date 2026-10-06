@@ -26,6 +26,19 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory site-demo
 
 Without `build/demo`, `build_site.py` emits only an empty trusted catalog. Outputs cannot already exist. Demo navigation is hidden in the trusted-only site and enabled only in outputs containing validated local fixtures. A demo URL on the trusted-only site returns to its trusted catalog. Synthetic records are separate and can never enter the trusted catalog.
 
+## Name your own instance
+
+Dots Depot is the reusable product. A deployment can have its own public display name without renaming the repository, Python client, package IDs, schemas or license:
+
+```sh
+DEPOT_INSTANCE_NAME="My Dot Depot" python3 scripts/build_site.py build/site
+# Or: python3 scripts/build_site.py build/site --instance-name "My Dot Depot"
+```
+
+The default and checked-in `site/` remain **Dots Depot**. Custom names are HTML-escaped, limited to 80 printable characters, and rendered into all page titles, headers, footer names, application metadata and accessible home links. A custom instance says **Powered by Dots Depot**; this changes no catalog or approval authority. Package and audit detail titles keep the instance name after loading.
+
+For Vercel, set the non-secret `DEPOT_INSTANCE_NAME` on the specific project's deployment environments. Use build command `python3 scripts/build_site.py build/site`, output directory `build/site`, and the repository root. Rebuild after changing the name. Do not publish the repository root or private review/approval directories. The name is public; never put secrets in it.
+
 ## Search, inspect, stage and verify
 
 ```sh

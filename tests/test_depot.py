@@ -328,4 +328,48 @@ class DepotTests(unittest.TestCase):
         for name in ['index.html','package.html','audit.html']:
             self.assertIn('data-demo-available="true"',(output/name).read_text())
 
+    def test_instance_name_is_display_only_on_every_static_page(self):
+        name="Owner’s Dot Depot"
+        output=build_site(self.root/'named-site',instance_name=name)
+        self.assertEqual(load_catalog(output)[0]['packages'],[])
+        for page in output.glob('*.html'):
+            html=page.read_text()
+            self.assertIn(f'data-instance-name="{name}"',html)
+            self.assertIn(f'aria-label="{name} home"',html)
+            self.assertIn(f'name="application-name" content="{name}"',html)
+            self.assertIn(f'<span data-instance-name>{name}</span>',html)
+            self.assertIn('Powered by Dots Depot',html)
+            self.assertIn(name,html.split('<title>')[1].split('</title>')[0])
+        for path in (output/'schemas').iterdir():
+            self.assertEqual(path.read_bytes(),(Path(__file__).resolve().parents[1]/'schemas'/path.name).read_bytes())
+        self.assertEqual((output/'catalog/index.json').read_bytes(),(Path(__file__).resolve().parents[1]/'site/catalog/index.json').read_bytes())
+
+    def test_instance_name_escapes_html_and_attributes(self):
+        name='<img src=x onerror="alert(1)"> & \'Depot\''
+        output=build_site(self.root/'escaped-site',instance_name=name)
+        for page in output.glob('*.html'):
+            html=page.read_text()
+            self.assertNotIn('<img src=x',html)
+            self.assertIn('&lt;img src=x onerror=&quot;alert(1)&quot;&gt; &amp; &#x27;Depot&#x27;',html)
+
+    def test_instance_name_defaults_stay_generic_and_invalid_names_fail_before_output(self):
+        output=build_site(self.root/'generic-site')
+        for page in output.glob('*.html'):
+            html=page.read_text()
+            self.assertIn('data-instance-name="Dots Depot"',html)
+            self.assertIn('BY CORGI-VERSE SOFTWARE',html)
+        for index,name in enumerate(['', '  ', 'x'*81, 'line\nbreak', 'control\x00', 42]):
+            destination=self.root/f'invalid-{index}'
+            with self.subTest(name=name),self.assertRaises(DepotError):
+                build_site(destination,instance_name=name)
+            self.assertFalse(destination.exists())
+
+    def test_instance_name_cli_environment_and_explicit_override(self):
+        script=Path(__file__).resolve().parents[1]/'scripts/build_site.py'
+        env={**os.environ,'DEPOT_INSTANCE_NAME':'Environment Depot'}
+        for suffix,args,expected in [('env',[],'Environment Depot'),('flag',['--instance-name','Flag Depot'],'Flag Depot')]:
+            output=self.root/suffix
+            subprocess.run([sys.executable,str(script),str(output),*args],env=env,check=True,capture_output=True)
+            self.assertIn(f'data-instance-name="{expected}"',(output/'index.html').read_text())
+
 if __name__=='__main__':unittest.main()

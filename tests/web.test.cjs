@@ -8,7 +8,7 @@ const {TextDecoder}=require('node:util');
 const source=fs.readFileSync('apps/web/depot.js','utf8');
 function context(fetch, options={}) {
   const ctx=vm.createContext({document:options.document||{body:{dataset:{page:''}}},location:options.location||{search:''},history:options.history,URL,URLSearchParams,TextDecoder,crypto:webcrypto,fetch});
-  vm.runInContext(source+';globalThis.api={parseStrict,validateDocument,read,catalog,loadMode,filterCards};',ctx);
+  vm.runInContext(source+';globalThis.api={parseStrict,validateDocument,read,catalog,loadMode,filterCards,detailTitle};',ctx);
   return ctx.api;
 }
 const schema=kind=>JSON.parse(fs.readFileSync('schemas/'+kind+'.schema.json','utf8'));
@@ -112,4 +112,15 @@ test('built local demo keeps navigation, filtering and return to empty trusted c
   assert.equal(view.node('empty-action').hidden,false);
   assert.equal(view.node('empty-action').textContent,'Explore synthetic fixtures →');
   assert.equal(view.node('error').hidden,true);
+});
+
+
+test('detail titles retain custom instance name with generic fallback',()=>{
+  const generic=context();assert.equal(generic.detailTitle('Fixture'),'Fixture — Dots Depot');
+  const custom=context(undefined,{document:{body:{dataset:{page:'',instanceName:'Owner’s Dot Depot'}}}});
+  assert.equal(custom.detailTitle('Fixture'),'Fixture — Owner’s Dot Depot');
+  // Disable automatic fetching while testing the audit title path in isolation.
+  const ctx=vm.createContext({document:{body:{dataset:{page:'audit',instanceName:'Owner’s Dot Depot'}}},location:{search:''},URLSearchParams});
+  vm.runInContext(source.slice(0,source.indexOf('async function detail()'))+';globalThis.title=detailTitle("Fixture");',ctx);
+  assert.equal(ctx.title,'Audit / Fixture — Owner’s Dot Depot');
 });

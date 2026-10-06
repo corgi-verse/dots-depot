@@ -1,6 +1,8 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const page = document.body.dataset.page;
+const instanceName = document.body.dataset.instanceName || 'Dots Depot';
+const detailTitle = name => (page === 'audit' ? 'Audit / ' : '') + name + ' — ' + instanceName;
 const params = new URLSearchParams(location.search);
 const demoAvailable = document.body.dataset.demoAvailable === 'true';
 let demo = demoAvailable && params.get('mode') === 'demo';
@@ -183,7 +185,7 @@ async function detail() {
     const requests=requestRows(m.requests);
     $('name').textContent=page==='audit'?'Audit / '+m.name:m.name;
     $('summary').textContent=page==='audit'?(demo?'This is a synthetic receipt for a fixture. No person approved this release.':'Human review of this exact release. Approval does not transfer to future versions.'):m.summary;
-    document.title=(page==='audit'?'Audit / ':'')+m.name+' — Dots Depot';badges(m);
+    document.title=detailTitle(m.name);badges(m);
     $('back').href=page==='audit'?link('package.html',entry):'index.html'+(demo?'?mode=demo':'');
     facts($('requests'),requests);
     const sourceRows=[['Repository',m.source.repository],['Commit',m.source.commit],['Subtree',m.source.subtree],['Source path',m.source.path],['Tree SHA-256',m.tree_sha256],['Manifest SHA-256',entry.manifest_sha256],['Catalog SHA-256',fingerprint]];

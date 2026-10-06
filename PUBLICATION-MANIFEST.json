@@ -43,36 +43,36 @@
       "sha256": "8dfe49d83039c4d41eec1390c186e55537e92a2ecc437d07f689159c64a873ff"
     },
     "README.md": {
-      "bytes": 8086,
-      "sha256": "56fc61609db3fc3b4b053987a86a570ad314bc19249c5a91234e01eff1d06550"
+      "bytes": 9221,
+      "sha256": "158c72d8b2887c1314f5a21ce6e20b8ed8607df968daaa9f141e11f8d9b24d6b"
     },
     "SECURITY.md": {
       "bytes": 1340,
       "sha256": "a99d7f29b432b6432a80ed01829436ec8da373959368d9613ea69dc3e0b27a12"
     },
     "apps/web/assets/depot.css": {
-      "bytes": 10013,
-      "sha256": "85c96a227a75f3351a8f624e098f6ac528b14429c2415e707887cf8f07389f0c"
+      "bytes": 10227,
+      "sha256": "bc60922610ea6c1c592fda91ee8d55cc6cd41f03a656d53fa1103982e9bac417"
     },
     "apps/web/audit.html": {
-      "bytes": 2028,
-      "sha256": "500413307018ef18bb708409f69dad90301016bdbb895ba253ce7db21bdcf99d"
+      "bytes": 2230,
+      "sha256": "2593cb60f9c1da5829e95774d5a21541ea6099674a3f170287425d2b88db93fe"
     },
     "apps/web/depot.js": {
-      "bytes": 15797,
-      "sha256": "e6a238bd27613fbde3aac4bbe4068f203f01f2d402d039b68864591dc7955153"
+      "bytes": 15932,
+      "sha256": "adf40c99127b93b810a15d86741084406568b47cd1732731126c506c1e62e28a"
     },
     "apps/web/index.html": {
-      "bytes": 4455,
-      "sha256": "37843c1cab1be99645f258d8cd99b82aa935c4486e97223aabe50c18fbb374e3"
+      "bytes": 4628,
+      "sha256": "e9e4194be94c988d9bcee1cfa6da6e8774685654983f5625c9fe60d0fc8dbab7"
     },
     "apps/web/package.html": {
-      "bytes": 2981,
-      "sha256": "966faadf14ba3419588f0b9940a3258872364f29cc3958cbc98ffb6856d9d8da"
+      "bytes": 3183,
+      "sha256": "beefe00ebfd413dc4b1f3543f77cf53a51a316e647a05821206e285da0628088"
     },
     "apps/web/policy.html": {
-      "bytes": 2529,
-      "sha256": "10f2e744c4e3065a64a0113ed323bc4513d9e959fc5b35ae9b21eccfeea25e8e"
+      "bytes": 2731,
+      "sha256": "c711baf8a1d305ee6ddb49ca1a1fadd9c1f949fec6818f290f75776245a52c32"
     },
     "depot/__init__.py": {
       "bytes": 52,
@@ -131,8 +131,8 @@
       "sha256": "95e8bbc93aeaca017389bf3f674d54d9f96a553c98a024fa73de5fa3e4e8ee5e"
     },
     "scripts/build_site.py": {
-      "bytes": 2068,
-      "sha256": "83b4c9b7e01454e46789b02a2f61c481292592e93b6d06d574e6872dd092d173"
+      "bytes": 3648,
+      "sha256": "febdacb9e6b73fd350f440985065a5638f0546561d193186b0b7437c6997347c"
     },
     "scripts/check_schemas.py": {
       "bytes": 1403,
@@ -155,32 +155,32 @@
       "sha256": "32586f4e0606cd0b82e5c0a327c1eea9cc473cec6bd99695d4e57a0799033529"
     },
     "site/assets/depot.css": {
-      "bytes": 10013,
-      "sha256": "85c96a227a75f3351a8f624e098f6ac528b14429c2415e707887cf8f07389f0c"
+      "bytes": 10227,
+      "sha256": "bc60922610ea6c1c592fda91ee8d55cc6cd41f03a656d53fa1103982e9bac417"
     },
     "site/audit.html": {
-      "bytes": 2028,
-      "sha256": "500413307018ef18bb708409f69dad90301016bdbb895ba253ce7db21bdcf99d"
+      "bytes": 2230,
+      "sha256": "2593cb60f9c1da5829e95774d5a21541ea6099674a3f170287425d2b88db93fe"
     },
     "site/catalog/index.json": {
       "bytes": 65,
       "sha256": "909f1dc4418fcb54604f8f0f80c5563e96032445446c7359feb6eb19b904b88f"
     },
     "site/depot.js": {
-      "bytes": 15797,
-      "sha256": "e6a238bd27613fbde3aac4bbe4068f203f01f2d402d039b68864591dc7955153"
+      "bytes": 15932,
+      "sha256": "adf40c99127b93b810a15d86741084406568b47cd1732731126c506c1e62e28a"
     },
     "site/index.html": {
-      "bytes": 4455,
-      "sha256": "37843c1cab1be99645f258d8cd99b82aa935c4486e97223aabe50c18fbb374e3"
+      "bytes": 4628,
+      "sha256": "e9e4194be94c988d9bcee1cfa6da6e8774685654983f5625c9fe60d0fc8dbab7"
     },
     "site/package.html": {
-      "bytes": 2981,
-      "sha256": "966faadf14ba3419588f0b9940a3258872364f29cc3958cbc98ffb6856d9d8da"
+      "bytes": 3183,
+      "sha256": "beefe00ebfd413dc4b1f3543f77cf53a51a316e647a05821206e285da0628088"
     },
     "site/policy.html": {
-      "bytes": 2529,
-      "sha256": "10f2e744c4e3065a64a0113ed323bc4513d9e959fc5b35ae9b21eccfeea25e8e"
+      "bytes": 2731,
+      "sha256": "c711baf8a1d305ee6ddb49ca1a1fadd9c1f949fec6818f290f75776245a52c32"
     },
     "site/schemas/approval.schema.json": {
       "bytes": 1505,
@@ -207,12 +207,12 @@
       "sha256": "4232c9192098b9dbd410338c6e45eca07fee75620ae9bfbd4621079976832acb"
     },
     "tests/test_depot.py": {
-      "bytes": 23964,
-      "sha256": "0fb20ee934812d8981bddb137f6faab69e6c6e2179d041d5c6b6d419eb7ad66c"
+      "bytes": 26687,
+      "sha256": "dbb30709076227de75b3ecaa1f634c4a1074df284c2a9b872c5ceb05060672c9"
     },
     "tests/web.test.cjs": {
-      "bytes": 8195,
-      "sha256": "ec64c842c9b65193e879c554bd8f00a243fa7e807e99893d84b5bcafadbbaf6f"
+      "bytes": 8998,
+      "sha256": "f3b76b5f69f4f66379fba987de8aedff021210b8c7987d3ddcefe7a7b0d07033"
     }
   },
   "license": "Apache-2.0",
